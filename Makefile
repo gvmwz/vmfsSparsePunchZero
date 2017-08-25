@@ -2,9 +2,8 @@ NAME := vmfsSparsePunchZero
 CXX_SRCS := $(wildcard *.cpp)
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 
-ARCH := native
-
-CXXFLAGS += -Wall -Wextra -static -std=c++11 -pthread -g -O3 -flto -march=$(ARCH) -mtune=$(ARCH)
+CXXFLAGS += -Wall -static -std=c++11 -g -O2
+LDFLAGS += -Wl,--wrap,_dl_random -Wl,--defsym,__wrap__dl_random=_dl_argv
 
 all: $(NAME)
 
