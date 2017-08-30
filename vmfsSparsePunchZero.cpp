@@ -1,9 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 #include <regex>
-#include <unistd.h>
+#include <string>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 #define COWDISK_MAX_PARENT_FILELEN  1024
 #define COWDISK_MAX_NAME_LEN        60
