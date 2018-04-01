@@ -179,6 +179,12 @@ int main(int argc, char *argv[])
 		printf("vmfsSparsePunchZero snapshot.vmdk\n");
 		return 0;
 	}
+	struct stat st;
+	stat(argv[1], &st);
+	if (st.st_size > 65536) {
+		printf("you should run this tool on vmdk extent file(with no \"delta\" in file name)\n");
+		exit(1);
+	}
 	VMDKInfo *info = readHeader(argv[1]);
 	if (info->type == "VMFSSPARSE" && info->parent != NULL) {
 		std::string fn = info->disk + ".new";
