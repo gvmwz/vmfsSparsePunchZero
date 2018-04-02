@@ -180,9 +180,8 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 	struct stat st;
-	stat(argv[1], &st);
-	if (st.st_size > 65536) {
-		printf("you should run this tool on vmdk extent file(with no \"delta\" in file name)\n");
+	if (stat(argv[1], &st) == 0 && st.st_size > 65536) {
+		printf("you should run this tool on vmdk descriptor file(with no \"delta\" in file name)\n");
 		exit(1);
 	}
 	VMDKInfo *info = readHeader(argv[1]);
